@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts SYSTEM "file:/d:/dtds/struts2.3.dtd">
+
+<struts>
+	<!-- package for welcome actions -->
+	<package name="basic" namespace="/basic" extends="struts-default">
+		<action name="hello">
+			<result>register.jsp</result>
+		</action>
+		<action name="process_register" class="actions.ActionCustomer"
+			method="registerCstomers">
+			<result name="reg_success" type="redirect">login.jsp</result>
+			<result name="reg_failed">register.jsp</result>
+		</action>
+		<action name="process_login" class="actions.ActionCustomer"
+			method="validateUser">
+			<result name="success" type="redirect">profile.jsp</result>
+			<result name="error">login.jsp</result>
+		</action>
+		
+		<action name="logout" class="actions.CustomerLogOutAction"
+			method="logOut">
+			<result>logout.jsp</result>
+		</action>
+		
+		
+		<action name="acceptProduct" class="actions.ActionAcceptDetails"
+			method="enrichTypes">
+			<result name="success" >acceptProductDetails.jsp</result>
+			
+		</action>
+		
+		<action name="acceptProduct">
+			<result name="success" >acceptProductDetails.jsp</result>
+			
+		</action>
+		<!-- 
+		<action name="acceptType" class="actions.ActionAcceptDetails"
+		method="enrichTypes">
+			<result name="success" >acceptProductDetails.jsp</result>
+			
+		</action>
+		 -->
+		
+		<action name="process_acceptProducts" class="actions.ActionAcceptDetails"
+		method="acceptDetails">
+		<result name="reg_success" type="redirect">profile.jsp</result>
+		<result name="reg_failed" type="redirect">acceptProductDetails.jsp</result>
+			
+		</action>
+		
+		<action name="process_upload" class="actions.ActionAcceptImage">
+			
+			<result name="success" >acceptProductDetails.jsp</result>
+			
+		</action>
+		
+		<action name="procees_showProduc" class="actions.ProductRegisterAction"
+			method="allProducts">
+			<result>allProductList.jsp</result>
+		</action>
+		<!-- <action name="categorywise_productlist" class="actions.TypeCRUDAction"
+			method="getProductsByType">
+			<result name="success">categorywiseproducts.jsp</result>
+		</action> -->
+		<action name="process_favo" class="actions.ShowMyFavouriteAction"
+			method="fetchProductsUsingCustomerId">
+			<result >myFavourite.jsp</result>
+		</action>
+		<action name="process_addToFavourite" class="actions.FavouriteCRUDAction"
+			method="addFavorite">
+			<result type="redirect">allProductList.jsp</result>
+		</action>
+		
+		<action name="show_ownerDetails" class="actions.MyAdvertisementAction"
+			method="getOwnerId">
+			<result >ownerDetails.jsp</result>
+		</action>
+		<action name="process_myads" class="actions.MyAdvertisementAction"
+			method="fetchProductsUsingCustomerId">
+			<result type="redirect">myAdvertisement.jsp</result>
+		</action>
+		
+	</package>
+
+</struts>
